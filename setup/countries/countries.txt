@@ -948,5 +948,5 @@ S21 = "setup/countries/assyria/S21.txt" #Chlomaron
 S22 = "setup/countries/africa/S22.txt" #Parva
 S23 = "setup/countries/africa/S23.txt" #Berenike Troglodytica
 #Submod Formable
-#TRK = "setup/countries/anatolia/TRK.txt" #TroanKingdom
-#GTR = "setup/countries/greece/thrace.txt" #GreatThrace
+TRK = "setup/countries/anatolia/TRK.txt" #TroanKingdom
+GTR = "setup/countries/greece/GTR.txt" #GreaterThrace

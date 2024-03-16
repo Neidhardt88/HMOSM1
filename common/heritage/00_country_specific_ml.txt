@@ -4158,7 +4158,7 @@ troan_kingdom_heritage = {
 	}
 }
 
-great_thrace_heritage = {
+greater_thrace_heritage = {
 	modifier = {
 		#good
 		manpower_recovery_speed = 0.1

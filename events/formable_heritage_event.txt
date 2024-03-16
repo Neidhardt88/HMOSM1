@@ -6452,11 +6452,11 @@ formable_heritage.167 = {
     option = { # EFFECT FIELD - FIRST OPTION
         name = formable_heritage.167.a # LOCALIZATION KEY - Option A text
         hidden_effect = { 
-			set_country_heritage = great_thrace_heritage
+			set_country_heritage = greater_thrace_heritage
 		} # EFFECT
 		show_as_tooltip = {
 			add_country_modifier = {
-				name = great_thrace_modifier
+				name = greater_thrace_modifier
 				duration = -1
 			}
 		}

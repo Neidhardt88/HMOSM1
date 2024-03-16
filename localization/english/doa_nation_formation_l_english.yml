@@ -858,10 +858,10 @@
  TROAN_KINGDOM_ADJECTIVE:0 "Troans"
  troan_kingdom_not_exists:0 "#Y Troan Kingdom#! must NOT exist."
 
- #Gteat Thrace
- form_great_thrace:0 "Form Great Thrace"
- form_great_thrace_desc:0 "The Great Thrace the realm #Y Great_Thrace#!"
- formable_great_thrace:0 "Great Thrace"
- GREAT_THRACE_NAME:0 "Great Thrace"
- GREAT_THRACE_ADJECTIVE:0 "greco_thracian"
- great_thrace_not_exists:0 "#Y Great Thrace#! must NOT exist."
+ #Greater Thrace
+ form_greater_thrace:0 "Form Greater Thrace"
+ form_greater_thrace_desc:0 "The Greater Thrace the realm #Y Great_Thrace#!"
+ formable_greater_thrace:0 "Greater Thrace"
+ GREATER_THRACE_NAME:0 "Greater Thrace"
+ GREATER_THRACE_ADJECTIVE:0 "Thracean"
+ greater_thrace_not_exists:0 "#Y Greater Thrace#! must NOT exist."

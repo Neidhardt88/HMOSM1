@@ -1,0 +1,84 @@
+﻿country_decisions = {
+	
+	# Greater Thrace
+	form_greater_thrace = {
+		
+			potential = {
+			num_of_cities >= 1
+			OR = {
+			country_culture_group = thrace_group
+			}
+			NOT = {
+				tag = GTR
+			}
+			OR = {
+				is_ai = no
+				num_of_cities >= 12
+			}
+			NOR = {
+				is_endgame_tag_trigger = yes
+			}
+		}
+		
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_region = thrace_region
+
+
+				}
+			}
+		}
+		
+		allow = {
+			custom_tooltip = {
+				text = greater_thrace_not_exists
+				NOT = {
+					any_country = {
+						tag = GTR
+					}
+				}
+			}
+			can_form_nation_trigger = yes
+			owns_or_subject_owns_region = thrace_region
+		}
+		
+		effect = {
+			custom_tooltip = "tier_2_formable_tooltip"
+			change_country_name = "GREATER_THRACE_NAME"
+			if = {
+				limit = {
+					NOR = { 
+						government = aristocratic_monarchy
+					}
+				}
+				change_government = aristocratic_monarchy
+				switch_government_type_event_clearup_effect = yes
+			}
+			hidden_effect = {
+				change_country_adjective = "GREATER_THRACE_ADJECTIVE"
+				change_country_tag = GTR
+				trigger_event = {
+					id = formable_heritage.167
+				}				
+			}
+				capital_scope = {
+					capital_formable_large_effect = yes
+					formable_capital_modifier_normal_effect = yes
+			}
+			custom_tooltip = "form_asia_claims_tooltip"
+			hidden_effect = {
+			area:europa_area = { formable_area_province_effect = yes }
+			area:rhodope_area = { formable_area_province_effect = yes }
+			area:haemimontus_area = { formable_area_province_effect = yes }
+			}
+			add_3_free_province_investments = yes
+		}
+		
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+}
+
