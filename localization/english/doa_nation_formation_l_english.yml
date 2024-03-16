@@ -858,10 +858,10 @@
  TROAN_KINGDOM_ADJECTIVE:0 "Troans"
  troan_kingdom_not_exists:0 "#Y Troan Kingdom#! must NOT exist."
 
- #Gteat thracia
+ #Gteat Thrace
  form_great_thrace:0 "Form Great Thrace"
- form_great_thrace_desc:0 "The Persians and Medes have been pushed back to their deserts, never to trouble us again. Asia has returned to the Greek fold, thought it keeps something of the old ways just the same. Having reclaimed the legacy of Hector and the Trojans, we style ourselves the realm of #Y Asia#!"
- formable_bod:0 "Great_Thrace"
- GREAT_THRACE_NAME:0 "Great_Thrace"
- GREAT_THRACE_ADJECTIVE:0 "Thracians"
- great_thrace_not_exists:0 "#Y great thrace#! must NOT exist."
+ form_great_thrace_desc:0 "The Great Thrace the realm #Y Great_Thrace#!"
+ formable_great_thrace:0 "Great Thrace"
+ GREAT_THRACE_NAME:0 "Great Thrace"
+ GREAT_THRACE_ADJECTIVE:0 "greco_thracian"
+ great_thrace_not_exists:0 "#Y Great Thrace#! must NOT exist."
