@@ -1,0 +1,84 @@
+﻿country_decisions = {
+	
+	# Mithridatic Kingdom
+	form_mithridatic_kingdom = {
+		
+			potential = {
+			num_of_cities >= 1
+			OR = {
+			country_culture_group = anatolian
+			}
+			NOT = {
+				tag = MTR
+			}
+			OR = {
+				is_ai = no
+				num_of_cities >= 12
+			}
+			NOR = {
+				is_endgame_tag_trigger = yes
+			}
+		}
+		
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_region = cappadocia_pontica_region
+
+
+				}
+			}
+		}
+		
+		allow = {
+			custom_tooltip = {
+				text = mithridatic_kingdom_not_exists
+				NOT = {
+					any_country = {
+						tag = MTR
+					}
+				}
+			}
+			can_form_nation_trigger = yes
+			owns_or_subject_owns_region = cappadocia_pontica_region
+		}
+		
+		effect = {
+			custom_tooltip = "tier_2_formable_tooltip"
+			change_country_name = "MITHRIDATIC_KINGDOM_NAME"
+			if = {
+				limit = {
+					NOR = { 
+						government = aristocratic_monarchy
+					}
+				}
+				change_government = aristocratic_monarchy
+				switch_government_type_event_clearup_effect = yes
+			}
+			hidden_effect = {
+				change_country_adjective = "MITHRIDATIC_KINGDOM_ADJECTIVE"
+				change_country_tag = MTR
+				trigger_event = {
+					id = formable_heritage.168
+				}				
+			}
+				capital_scope = {
+					capital_formable_large_effect = yes
+					formable_capital_modifier_normal_effect = yes
+			}
+			custom_tooltip = "form_mithridatickingdom_claims_tooltip"
+			hidden_effect = {
+			area:iris_inferioris_area = { formable_area_province_effect = yes }
+			area:iris_superioris_area = { formable_area_province_effect = yes }
+			area:armenia_maioris_area = { formable_area_province_effect = yes }
+			}
+			add_4_free_province_investments = yes
+		}
+		
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+}
+

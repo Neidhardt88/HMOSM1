@@ -865,3 +865,19 @@
  GREATER_THRACE_NAME:0 "Greater Thrace"
  GREATER_THRACE_ADJECTIVE:0 "Thracean"
  greater_thrace_not_exists:0 "#Y Greater Thrace#! must NOT exist."
+
+  #Mithridatic Kingdom 
+ form_mithridatic_kingdom:0 "Form Mithridatic Kingdom"
+ form_mithridatic_kingdom_desc:0 "The Mithridatic the realm #Y Mithridatic_Kingdom#!"
+ formable_mithridatic_kingdom:0 "Mithridatic Kingdom"
+ MITHRIDATIC_KINGDOM_NAME:0 "Mithridatic Kingdom"
+ MITHRIDATIC_KINGDOM_ADJECTIVE:0 "Anatolian"
+ mithridatic_kingdom_not_exists:0 "#Y Mithridatic Kingdom#! must NOT exist."
+
+   #Achaemenid Empire 
+ form_achaemenid_empire:0 "Form Achaemenid Empire"
+ form_achaemenid_empire_desc:0 "The Achaemenid Empire the realm #Y Achaemenid_Empire#!"
+ formable_achaemenid_empire:0 "Achaemenid Empire"
+ ACHAEMENID_EMPIRE_NAME:0 "Achaemenid Empire"
+ ACHAEMENID_EMPIRE_ADJECTIVE:0 "Persians"
+ achaemenid_empire_not_exists:0 "#Y Achaemenid Empire#! must NOT exist."

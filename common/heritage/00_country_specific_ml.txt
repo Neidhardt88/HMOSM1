@@ -1139,7 +1139,7 @@ persian_heritage = {
 	modifier = {
 		#good
 		global_manpower_modifier = 0.05
-		archers_discipline = 0.05
+		archers_discipline = 0.1
 		
 		#bad
 		global_cohort_recruit_speed = -0.05
@@ -4169,5 +4169,33 @@ greater_thrace_heritage = {
 	}
 	trigger = {
 		tag = GTR
+	}
+}
+
+mithridatic_kingdom_heritage = {
+	modifier = {
+		#good
+		global_population_capacity_modifier = 0.05
+		global_tax_modifier = 0.1
+
+		#bad
+		manpower_recovery_speed = -0.05
+	}
+	trigger = {
+		tag = MTR
+	}
+}
+
+achaemenid_empire_heritage = {
+	modifier = {
+		#good
+		global_manpower_modifier = 0.05
+		archers_discipline = 0.1
+		
+		#bad
+		global_cohort_recruit_speed = -0.05
+	}
+	trigger = {
+		tag = AHM
 	}
 }

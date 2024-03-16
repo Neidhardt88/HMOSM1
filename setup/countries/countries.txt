@@ -950,3 +950,5 @@ S23 = "setup/countries/africa/S23.txt" #Berenike Troglodytica
 #Submod Formable
 TRK = "setup/countries/anatolia/TRK.txt" #TroanKingdom
 GTR = "setup/countries/greece/GTR.txt" #GreaterThrace
+MTR = "setup/countries/persian/MTR.txt" #MithridaticKingdom
+AHM = "setup/countries/persian/AHM.txt" #AchaemenidEmpire
