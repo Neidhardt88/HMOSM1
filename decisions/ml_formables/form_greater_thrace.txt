@@ -3,11 +3,9 @@
 	# Greater Thrace
 	form_greater_thrace = {
 		
-			potential = {
+		potential = {
 			num_of_cities >= 1
-			OR = {
-			country_culture_group = thrace_group
-			}
+			primary_culture = greco_thracian
 			NOT = {
 				tag = GTR
 			}

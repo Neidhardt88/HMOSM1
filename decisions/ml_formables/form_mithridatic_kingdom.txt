@@ -3,11 +3,9 @@
 	# Mithridatic Kingdom
 	form_mithridatic_kingdom = {
 		
-			potential = {
+		potential = {
 			num_of_cities >= 1
-			OR = {
-			country_culture_group = anatolian
-			}
+			primary_culture = cappadocian
 			NOT = {
 				tag = MTR
 			}
@@ -66,7 +64,7 @@
 					capital_formable_large_effect = yes
 					formable_capital_modifier_normal_effect = yes
 			}
-			custom_tooltip = "form_mithridatickingdom_claims_tooltip"
+			custom_tooltip = cappadocia_claims_tooltip
 			hidden_effect = {
 			area:iris_inferioris_area = { formable_area_province_effect = yes }
 			area:iris_superioris_area = { formable_area_province_effect = yes }

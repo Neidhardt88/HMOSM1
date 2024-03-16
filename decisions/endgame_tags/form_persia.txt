@@ -6,9 +6,8 @@
 		potential = {
 			num_of_cities >= 1
 			OR = {
-				country_culture_group = persia
-				country_culture_group = caucasian
-				country_culture_group = anatolian
+			primary_culture = pasargadi
+			is_tribal = yes
 			}
 			NOT = {
 				tag = PER
@@ -107,20 +106,13 @@
 					name = ach_heraclea_persica_var
 				}
 			}
-			if = {
-				limit = {
-					current_ruler = {
-						has_same_family = char:82
-					}
-				}
-				change_country_name = "ACHAEMENID_NAME"
-				change_country_flag = ACHAEMENID_FLAG
-			}
+			
 			else = {
 				change_country_name = "PERSIA_NAME"
 			}
 			hidden_effect = {
 				change_country_adjective = "PERSIA_ADJECTIVE"
+				change_country_flag = ACHAEMENID_FLAG
 				change_country_color =  achaemenid_mauve
 				change_country_tag = PER
 			}
