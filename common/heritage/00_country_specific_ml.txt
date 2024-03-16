@@ -4157,3 +4157,17 @@ troan_kingdom_heritage = {
 		tag = TRK
 	}
 }
+
+great_thrace_heritage = {
+	modifier = {
+		#good
+		manpower_recovery_speed = 0.1
+		monthly_political_influence_modifier = 0.05
+
+		#bad
+		global_pop_assimilation_speed_modifier = -0.1
+	}
+	trigger = {
+		tag = GTR
+	}
+}

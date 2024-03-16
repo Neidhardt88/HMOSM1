@@ -1,0 +1,77 @@
+﻿country_decisions = {
+	
+	# Great Thrace
+	form_great_thrace = {
+		
+		potential = {
+			num_of_cities >= 1
+			country_culture_group = thracians
+			tag = TRE
+			NOT = {
+				tag = GTR
+			}
+			OR = {
+				is_ai = no
+				num_of_cities >= 12
+			}
+			NOR = {
+				is_tier_2_formable_trigger = yes
+				is_endgame_tag_trigger = yes
+			}
+		}
+		
+		highlight = {
+			scope:province = {
+				OR = {
+					is_in_area = haemimontus_area
+					is_in_area = rhodope_area
+					is_in_area = europa_area
+
+
+				}
+			}
+		}
+		
+		allow = {
+			custom_tooltip = {
+				text = great_thrace_not_exists
+				NOT = {
+					any_country = {
+						tag = GTR
+					}
+				}
+			}
+			can_form_nation_trigger = yes
+					owns_or_subject_owns_area = haemimontus_area
+					owns_or_subject_owns_area = rhodope_area
+					owns_or_subject_owns_area = europa_area
+		}
+		
+		effect = {
+			custom_tooltip = "tier_2_formable_tooltip"
+			change_country_name = "GREAT_THRACE_NAME"
+			hidden_effect = {
+				change_country_adjective = "TROAN_KINGDOM_ADJECTIVE"
+				change_country_tag = GTR
+				trigger_event = {
+					id = formable_heritage.167
+				}				
+			}
+				capital_scope = {
+					capital_formable_large_effect = yes
+					formable_capital_modifier_normal_effect = yes
+			}
+			hidden_effect = {
+			area:haemimontus_area = { formable_area_province_effect = yes }
+			area:rhodope_area = { formable_area_province_effect = yes }
+			area:europa_area = { formable_area_province_effect = yes }
+			}
+			add_3_free_province_investments = yes
+		}
+		
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+}
