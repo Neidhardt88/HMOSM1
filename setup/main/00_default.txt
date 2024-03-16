@@ -15458,8 +15458,8 @@ country = {
 		
 		A61 = { #KELONAI
 			government = despotic_monarchy
-			primary_culture = macedonian
-			religion = roman_pantheon
+			primary_culture = median
+			religion = zoroaster
 		
 			technology={
 				military_tech={ level=2 progress=0 }
