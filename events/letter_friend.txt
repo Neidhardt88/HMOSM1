@@ -1,0 +1,799 @@
+﻿namespace = letter_friend
+
+letter_friend.1 = { #You send the letter to a ruler. Does he accept to correspond? Received by target ruler
+	type = country_event
+	title = "letter_friend.1.t"
+	desc = "letter_friend.1.desc"
+	left_portrait = current_ruler
+	right_portrait = scope:target
+	picture = greek_philosophers
+	
+	option = { #Option for recipient to accept
+		name = "letter_friend.1.a"
+		scope:target = {
+			set_variable = {
+				name = letter_recipient
+				value = scope:actor.current_ruler
+				days = 1080
+			}
+			save_scope_as = letter_recipient
+		}
+		scope:actor.current_ruler = {
+			set_variable = {
+				name = letter_writer
+				value = scope:target
+				days = 180
+			}
+			save_scope_as = letter_writer
+		}
+		custom_tooltip = friend_refusal
+		hidden_effect = {
+			if = {
+				limit = {
+					scope:actor = {
+						has_land = yes
+					}
+				}
+				scope:actor = {
+					trigger_event = {
+						id = letter_friend.3
+						days = 5
+					}
+				}
+			}
+		}
+		# ai always should accept
+		ai_chance = {
+			factor = 100
+		}
+	}
+	
+	option = { #Option for recipient to decline
+		name = "letter_friend.1.b"
+		custom_tooltip = friend_refusal
+		hidden_effect = {
+			if = {
+				limit = {
+					scope:actor = {
+						has_land = yes
+					}
+				}
+				scope:actor = {
+					trigger_event = {
+						id = letter_friend.2
+						days = 5
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	
+}
+
+letter_friend.2 = { #Declined... he didnt even read it 
+	type = country_event
+	title = "letter_friend.2.t"
+	desc = "letter_friend.2.desc"
+	
+	left_portrait = current_ruler
+	right_portrait = scope:target
+	
+	picture = greek_court
+	
+	option = {
+		name = "letter_friend.2.a"
+		custom_tooltip = no_effect_tooltip
+	}
+	
+}
+
+letter_friend.3 = { #accepted with pleasure
+	type = country_event
+	title = "letter_friend.3.t"
+	desc = "letter_friend.3.desc"
+	left_portrait = current_ruler
+	right_portrait = scope:letter_recipient
+	goto_location = scope:letter_recipient
+	picture = council_country
+	
+	option = {
+		name = "letter_friend.3.a"
+		scope:actor = {
+			pay_price = send_letter
+		}
+		scope:letter_recipient = {
+			if = {
+				limit = {
+					is_ruler = yes
+					NOT = {
+						this = ROOT.current_ruler
+					}
+				}
+
+				add_treasury = 50
+			}
+		}
+		scope:actor = {
+			trigger_event = { 
+				id = letter_friend.4
+				days = 90
+			}
+		}
+	}
+}
+
+
+letter_friend.4 = {
+	type = country_event
+	title = "letter_friend.4.t"
+	desc = "letter_friend.4.desc"
+	left_portrait = scope:letter_writer
+	right_portrait = scope:letter_recipient
+	picture = council_country
+	goto_location = scope:letter_recipient
+	
+	option = {
+		name = "letter_friend.4.a"
+		custom_tooltip = letter_friend.4.a.tt
+		trigger = {
+			## if the character already has the best traits then dont offer the option
+			NOT = {
+				scope:letter_writer = {
+					has_character_modifier = better_martial_05
+				}
+			}
+		}
+
+		hidden_effect = {
+			set_variable = {
+				name = roll
+				value = { integer_range = { min = 1 max = 20 } }
+			}
+			if = { 
+				limit = {
+					has_variable = roll
+					var:roll <= scope:letter_recipient.martial
+				}
+				random_list = { 
+					90 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.13
+								days = 30
+							}
+						}
+					}
+					10 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.29
+								days = 30
+							}
+						}
+					} 
+				}
+			}
+			else = {
+				random_list = { 
+					40 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.14
+								days = 30
+							}
+						}
+					} 
+					60 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.29
+								days = 30
+							}
+						}
+					} 
+				 }
+			}
+			remove_variable = roll
+		}	
+		
+		#fire_next_letter_event_effect = yes
+	}
+
+	option = {
+		name = "letter_friend.4.b"
+		custom_tooltip = letter_friend.4.b.tt
+		trigger = {
+			## if the character already has the best traits then dont offer the option
+			NOT = {
+				scope:letter_writer = {
+					has_character_modifier = better_finesse_05
+				}
+			}
+		}
+		
+		#custom_tooltip = espionage_suspicion_tooltip
+		hidden_effect = {
+			set_variable = {
+				name = roll
+				value = { integer_range = { min = 1 max = 20 } }
+			}
+			if = { 
+				limit = {
+					has_variable = roll
+					var:roll <= scope:letter_recipient.finesse
+				}
+
+				random_list = { 
+					90 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.15
+								days = 30
+							}
+						}
+					}
+					10 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.29
+								days = 30
+							}
+						}
+					} 
+				}
+			}
+			else = {
+				random_list = { 
+					40 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.16
+								days = 30
+							}
+						}
+					} 
+					60 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.29
+								days = 30
+							}
+						}
+					} 
+				 }
+			}
+			remove_variable = roll
+		}
+		
+		#fire_next_letter_event_effect = yes
+	}
+
+	option = {
+		name = "letter_friend.4.c"
+		custom_tooltip = letter_friend.4.c.tt
+		## if the character already has the best traits then dont offer the option
+		trigger = {
+			NOT = {
+				scope:letter_writer = {
+					has_character_modifier = better_zeal_05
+				}
+			}
+		}
+
+		hidden_effect = {
+			set_variable = {
+				name = roll
+				value = { integer_range = { min = 1 max = 20 } }
+			}
+			if = { 
+				limit = {
+					has_variable = roll
+					var:roll <= scope:letter_recipient.zeal
+				}
+				random_list = { 
+					90 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.17
+								days = 30
+							}
+						}
+					}
+					10 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.29
+								days = 30
+							}
+						}
+					} 
+				}
+			}
+			else = {
+				random_list = { 
+					40 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.18
+								days = 30
+							}
+						}
+					} 
+					60 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.29
+								days = 30
+							}
+						}
+					} 
+				 }
+			}
+			remove_variable = roll
+		}
+
+		#fire_next_letter_event_effect = yes
+	}
+
+	option = {
+		name = "letter_friend.4.d"
+		custom_tooltip = letter_friend.4.d.tt
+		## if the character already has the best traits then dont offer the option
+		trigger = {
+			NOT = {
+				scope:letter_writer = {
+					has_character_modifier = better_charisma_05
+				}
+			}
+		}
+
+		hidden_effect = {
+			set_variable = {
+				name = roll
+				value = { integer_range = { min = 1 max = 20 } }
+			}
+			if = { 
+				limit = {
+					has_variable = roll
+					var:roll <= scope:letter_recipient.charisma
+				}
+				random_list = { 
+					90 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.19
+								days = 30
+							}
+						}
+					}
+					10 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.29
+								days = 30
+							}
+						}
+					} 
+				}
+			}
+			else = {
+				random_list = { 
+					40 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.20
+								days = 30
+							}
+						}
+					} 
+					60 = {
+						scope:actor = {
+							trigger_event = {
+								id = letter_friend.29
+								days = 30
+							}
+						}
+					} 
+				 }
+			}
+			remove_variable = roll
+		}	
+
+	}
+	option = {
+		name = "letter_friend.4.e"
+		# cancel the chain
+		hidden_effect = {
+			if = {
+				limit = {
+					scope:actor = {
+						has_land = yes
+					}
+				}
+				scope:actor = {
+					trigger_event = {
+						id = letter_friend.2
+						days = 5
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+
+###############################################################
+## RESULTS ##
+
+###############################################################
+
+# gain martial
+letter_friend.13 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:letter_writer = {
+			improve_martial_effect = yes
+		}
+		scope:letter_writer.employer = {
+			trigger_event = { id = letter_friend.21 }
+		}
+	}
+}
+
+# lose martial
+letter_friend.14 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:letter_writer = {
+			impair_martial_effect = yes
+		}
+		scope:letter_writer.employer = {
+			trigger_event = { id = letter_friend.22 }
+		}
+	}
+}
+
+# gain finesse
+letter_friend.15 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:letter_writer = {
+			improve_finesse_effect = yes
+		}
+		scope:letter_writer.employer = {
+			trigger_event = { id = letter_friend.23 }
+		}
+	}
+}
+
+
+# lose finesse
+letter_friend.16 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:letter_writer = {
+			impair_finesse_effect = yes
+		}
+		scope:letter_writer.employer = {
+			trigger_event = { id = letter_friend.24 }
+		}
+	}
+}
+
+# gain zeal
+letter_friend.17 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:letter_writer = {
+			improve_zeal_effect = yes
+		}
+		scope:letter_writer.employer = {
+			trigger_event = { id = letter_friend.25 }
+		}
+	}
+}
+
+
+# lose zeal
+letter_friend.18 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:letter_writer = {
+			impair_zeal_effect = yes
+		}
+		scope:letter_writer.employer = {
+			trigger_event = { id = letter_friend.26 }
+		}
+	}
+}
+
+# gain charisma
+letter_friend.19 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:letter_writer = {
+			improve_charisma_effect = yes
+		}
+		scope:letter_writer.employer = {
+			trigger_event = { id = letter_friend.27 }
+		}
+	}
+}
+
+# lose charisma
+letter_friend.20 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:letter_writer = {
+			impair_charisma_effect = yes
+		}
+		scope:letter_writer.employer = {
+			trigger_event = { id = letter_friend.28 }
+		}
+	}
+}
+
+
+############THE RESULTS OF THE LETTER WRITING ARE REVEALED#########################
+
+## THESE END THE LETTER CHAIN ###########
+
+
+letter_friend.21 = { # Final resolution Martial success
+	type = country_event
+	title = letter_friend.21.t
+	desc = letter_friend.21.desc
+	left_portrait = scope:letter_writer
+	right_portrait = scope:letter_recipient
+	picture = great_library
+	interface_lock = no
+	
+	immediate = {
+		#remove_letter_variables = yes
+	}
+
+	option = {
+		name = "letter_friend.21.a"
+	}
+}
+
+letter_friend.22 = { # Final resolution Martial failure
+	type = country_event
+	title = letter_friend.22.t
+	desc = letter_friend.22.desc
+	left_portrait = scope:letter_writer
+	right_portrait = scope:letter_recipient
+	picture = great_library
+	interface_lock = no
+	
+	immediate = {
+		#remove_letter_variables = yes
+	}
+
+	option = {
+		name = "letter_friend.22.a"
+	}
+
+	option = {
+		name = "letter_friend.22.b"
+		scope:letter_recipient = {
+			remove_friend = scope:letter_writer
+		}
+		scope:letter_writer.employer = {
+			add_political_influence = -25
+		}
+	}
+
+}
+
+letter_friend.23 = { # Final resolution Finesse success
+	type = country_event
+	title = letter_friend.23.t
+	desc = letter_friend.23.desc
+	left_portrait = scope:letter_writer
+	right_portrait = scope:letter_recipient
+	picture = great_library
+	interface_lock = no
+	
+	immediate = {
+		#remove_letter_variables = yes
+	}
+
+	option = {
+		name = "letter_friend.23.a"
+	}
+}
+
+letter_friend.24 = { # Final resolution Finesse failure
+	type = country_event
+	title = letter_friend.24.t
+	desc = letter_friend.24.desc
+	left_portrait = scope:letter_writer
+	right_portrait = scope:letter_recipient
+	picture = great_library
+	interface_lock = no
+	
+	immediate = {
+		#remove_letter_variables = yes
+	}
+
+	option = {
+		name = "letter_friend.24.a"
+	}
+
+	option = {
+		name = "letter_friend.24.b"
+		scope:letter_recipient = {
+			remove_friend = scope:letter_writer
+		}
+		scope:letter_writer.employer = {
+			add_political_influence = -25
+		}
+	}
+
+}
+
+letter_friend.25 = { # Final resolution Zeal success
+	type = country_event
+	title = letter_friend.25.t
+	desc = letter_friend.25.desc
+	left_portrait = scope:letter_writer
+	right_portrait = scope:letter_recipient
+	picture = great_library
+	interface_lock = no
+	
+	immediate = {
+		#remove_letter_variables = yes
+	}
+
+	option = {
+		name = "letter_friend.25.a"
+	}
+}
+
+letter_friend.26 = { # Final resolution Zeal failure
+	type = country_event
+	title = letter_friend.26.t
+	desc = letter_friend.26.desc
+	left_portrait = scope:letter_writer
+	right_portrait = scope:letter_recipient
+	picture = great_library
+	interface_lock = no
+	
+	immediate = {
+		#remove_letter_variables = yes
+	}
+
+	option = {
+		name = "letter_friend.26.a"
+	}
+
+	option = {
+		name = "letter_friend.26.b"
+		scope:letter_recipient = {
+			remove_friend = scope:letter_writer
+		}
+		scope:letter_writer.employer = {
+			add_political_influence = -25
+		}
+	}
+}
+
+letter_friend.27 = { # Final resolution Charisma success
+	type = country_event
+	title = letter_friend.27.t
+	desc = letter_friend.27.desc
+	left_portrait = scope:letter_writer
+	right_portrait = scope:letter_recipient
+	picture = great_library
+	interface_lock = no
+	
+	immediate = {
+		#remove_letter_variables = yes
+	}
+
+	option = {
+		name = "letter_friend.27.a"
+	}
+}
+
+letter_friend.28 = { # Final resolution Charisma failure
+	type = country_event
+	title = letter_friend.28.t
+	desc = letter_friend.28.desc
+	left_portrait = scope:letter_writer
+	right_portrait = scope:letter_recipient
+	picture = great_library
+	interface_lock = no
+	
+	immediate = {
+		#remove_letter_variables = yes
+	}
+
+	option = {
+		name = "letter_friend.28.a"
+	}
+
+	option = {
+		name = "letter_friend.28.b"
+		scope:letter_recipient = {
+			remove_friend = scope:letter_writer
+		}
+		scope:letter_writer.employer = {
+			add_political_influence = -25
+		}
+	}
+
+}
+
+letter_friend.29 = {
+	type = country_event
+	title = letter_friend.29.t
+	desc = letter_friend.29.desc
+	left_portrait = scope:letter_writer
+	right_portrait = scope:letter_recipient
+	picture = great_library
+	interface_lock = no
+	
+	immediate = {
+		#remove_letter_variables = yes
+	}
+
+	option = {
+		name = "letter_friend.29.a"
+	}
+}
+
+letter_friend.200 = { #You send the letter to a friend. They accept
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:target = {
+			set_variable = {
+				name = letter_recipient
+				value = scope:actor.current_ruler
+				days = 1080
+			}
+			save_scope_as = letter_recipient
+		}
+
+		scope:actor.current_ruler = {
+			set_variable = {
+				name = letter_writer
+				value = scope:target
+				days = 180
+			}
+			save_scope_as = letter_writer
+		}
+
+		scope:actor = {
+			trigger_event = {
+				id = letter_friend.3
+				days = 2
+			}
+		}
+	}
+
+}

@@ -1,0 +1,6 @@
+﻿color = "mid_grey"
+color2 = "mid_grey"
+
+ship_names = {
+	#
+}

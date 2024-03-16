@@ -1,0 +1,164 @@
+﻿border_forts = {
+
+	duration = 0
+	enable = no
+	toggle = no
+	map = yes
+
+	army_only = yes
+	soundeffect ="event:/SFX/Animations/Units/Generic/sfx_anim_unit_build_border_fort"
+
+	allow = {
+		unit_owner = { can_pay_price = build_border_fort }
+		custom_tooltip = {
+			text = "is_allowed_border_fortress_tt"
+			OR = {
+				root.unit_owner = {
+					has_military_bonus = latin_roman_path_9
+				}
+				root.unit_owner = {
+					is_tribal = yes
+				}
+			}
+		}
+		has_commander = yes
+		is_army = yes
+		in_combat = no
+		is_moving = no
+		in_siege = no
+		is_exiled = no
+		unit_size >= 5
+		unit_location = {
+			trigger_if = {
+				limit = { is_sea = yes }
+				NOT = { is_sea = yes }
+			}
+			NOT = {
+				has_city_status = yes
+				has_building = border_fortress_building
+			}
+			custom_tooltip = {
+				text = "neighboring_tribal_province_tt"
+				OR = {
+					AND = {
+						has_owner = no
+						is_uninhabitable = no
+					}
+					AND = {
+						has_owner = yes 
+						owner = root.unit_owner
+						any_neighbor_province = {
+							has_owner = yes
+							NOT = { owner = root.unit_owner }
+							is_uninhabitable = no
+						}
+					}
+				}
+			}
+			free_building_slots > 0
+			custom_tooltip = {
+				text = neighboring_border_province_tt
+				any_neighbor_province = {
+					owner =  root.unit_owner
+					controller = root.unit_owner
+				}
+			}
+		}
+		custom_tooltip = {
+			text = "num_of_loyal_cohorts_tooltip"
+			num_of_non_loyal_cohorts_svalue >= 1
+		}
+		trigger_if = {
+			limit = {
+				exists = commander
+			}
+			commander = {
+				loyalty > 33
+			}
+		}
+	}
+	
+	start_effect = {
+		unit_owner = { pay_price = build_border_fort }
+		if = {
+			limit = {
+				exists = commander
+			}
+			random_sub_unit = {
+				limit = {
+					has_personal_loyalty = no
+				}
+				if = {
+					limit = {
+						root = {
+							unit_owner = {
+								is_republic = yes
+							}
+						}
+					}
+					set_personal_loyalty = root.commander
+				}
+				else_if = {
+					limit = {
+						root = {
+							commander = {
+								is_ruler = no
+							}
+						} 
+					}
+					set_personal_loyalty = root.commander
+				}
+				else = {
+					root = {
+						unit_owner = {
+							add_tyranny = 1
+						}
+					}
+				}
+			}
+		}
+		unit_location = {
+			if = {
+				limit = {
+					has_owner = yes
+					owner = root.unit_owner
+				}
+				add_building_level = border_fortress_building
+			}
+			else = {
+				set_conquered_by = root.unit_owner
+				add_building_level = border_fortress_building
+			}
+		}
+		unit_owner = {
+			random_owned_province = {
+				limit = {
+					total_population >= 2
+					any_pops_in_province = {
+						count >= 1
+						NOT = { pop_type = slaves }
+						NOT = { pop_type = tribesmen }
+						NOT = { pop_type = freemen }
+					}
+				}
+				random_pops_in_province = {
+					limit = {
+						NOT = { pop_type = slaves }
+						NOT = { pop_type = tribesmen }
+						NOT = { pop_type = freemen }	
+					}
+					move_pop = root.unit_location
+				}
+			}
+		}
+	}
+
+
+	
+	#Expect AI to run out of provinces to do this in given they don't deliberately try to reach border provinces with units, hence over-expenditure is not a problem.
+	ai_will_do = {
+		modifier = {
+			factor = 0
+		}
+	}
+}

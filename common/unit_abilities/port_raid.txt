@@ -1,0 +1,165 @@
+﻿port_raid = {
+	duration = 31
+	enable = yes
+	toggle = yes
+	soundeffect = "event:/SFX/UI/Unit/sfx_ui_unit_port_raid"
+
+	map = no
+
+	navy_only = yes
+
+	allow = {
+		is_navy = yes
+		in_combat = no
+		is_moving = no
+		is_exiled = no
+		custom_tooltip = {
+			text = port_raid_explain_tt
+			any_sub_unit = {
+				ship_category = heavy
+				subunit_strength_percentage >= 0.95
+			}
+		}
+		trigger_if = {
+			limit = {
+				exists = commander
+			}
+			commander = {
+				loyalty > 33
+			}
+		}
+		trigger_if = {
+			limit = {
+				unit_location = {
+					any_neighbor_province = {
+						is_sea = no
+						has_owner = yes
+						is_port = yes
+						NOT = { controller = root.unit_owner }
+						controller = { war_with = root.unit_owner }
+						has_siege = yes
+						siege = {
+							has_breach = no
+						}
+					}
+				}
+			}
+			unit_location = {
+				any_neighbor_province = {
+					is_sea = no
+					has_owner = yes
+					is_port = yes
+					NOT = { controller = root.unit_owner }
+					controller = { war_with = root.unit_owner }
+					has_siege = yes
+					siege = {
+						has_breach = no
+					}
+				}
+			}
+		}
+		trigger_else = {
+			custom_tooltip = {
+				text = port_raid_no_valid_port
+				unit_location = {
+					any_neighbor_province = {
+						is_sea = no
+						has_owner = yes
+						is_port = yes
+						NOT = { controller = root.unit_owner }
+						controller = { war_with = root.unit_owner }
+						has_siege = yes
+						siege = {
+							has_breach = no
+						}
+					}
+				}	
+			}
+		}
+	}
+	
+	start_effect = {
+		save_scope_as = naval_raider_unit
+		if = {
+			limit = {
+				can_raid_port = yes
+			}
+
+			show_as_tooltip = { #All fake for the tooltips sake
+				random_sub_unit = {
+					limit = {
+						ship_category = heavy
+						subunit_strength_percentage >= 0.95
+					}
+					add_subunit_strength = -0.30
+				}
+
+				add_unit_modifier = {
+					name = naval_action
+					duration = 30
+				}
+
+				custom_tooltip = port_raid_explainer
+				unit_location = {
+					random_neighbor_province = {
+						limit = {
+							raid_port_province_trigger = yes
+							NOT = { controller = root.unit_owner }
+							controller = { war_with = root.unit_owner }
+						}
+						siege = { add_breach = 1 }
+					}
+				}
+			}
+
+			hidden_effect = {
+				set_variable = is_navy_raiding
+
+				random_sub_unit = {
+					limit = {
+						ship_category = heavy
+						subunit_strength_percentage >= 0.95
+					}
+					add_subunit_strength = -0.30
+				}
+
+				add_unit_modifier = {
+					name = naval_action
+					duration = 30
+				}
+
+				unit_location = {
+					save_scope_as = naval_raider_location
+				}
+
+				unit_owner = {
+					trigger_event = {
+						id = hmo_unit_abilties.5
+						days = 30
+					}
+				}
+			}
+		}
+		else = {
+			custom_tooltip = port_raid_explainer
+		}
+	}
+	
+	finished_when = {
+		OR = {
+			is_exiled = yes
+			unit_owner = { has_low_economic_policy = expense_navy }
+			is_moving = yes
+			in_combat = yes
+			has_commander = no
+			strength_percentage < 0.3
+			morale_percentage < 0.3
+		}
+	}
+
+	finish_effect = {
+		navy_port_raid_finish_effect = yes
+	}
+
+	idle_entity_state = combat
+}

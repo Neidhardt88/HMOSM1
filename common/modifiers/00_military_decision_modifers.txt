@@ -1,0 +1,101 @@
+﻿#Militray decision modifers 
+
+better_armour = { 
+ heavy_cavalry_defensive = 0.05
+ heavy_infantry_defensive = 0.05
+ light_cavalry_defensive = 0.05
+ light_infantry_defensive = 0.05
+ warelephant_defensive = 0.05
+ archers_defensive = 0.05
+ horse_archers_defensive = 0.05
+ camels_defensive = 0.05
+ army_maintenance_cost = 0.05
+}
+
+better_weapons = {
+ heavy_cavalry_offensive = 0.05
+ heavy_infantry_offensive = 0.05
+ light_cavalry_offensive = 0.05
+ light_infantry_offensive = 0.05
+ warelephant_offensive = 0.05
+ archers_offensive = 0.05
+ horse_archers_offensive = 0.05
+ camels_offensive = 0.05
+ army_maintenance_cost = 0.05
+}
+
+routine_drill = {
+ heavy_cavalry_discipline = 0.05
+ heavy_infantry_discipline = 0.05
+ light_cavalry_discipline = 0.05
+ warelephant_discipline = 0.05
+ archers_discipline = 0.05
+ horse_archers_discipline = 0.05
+ camels_discipline = 0.05
+ army_maintenance_cost = 0.05
+}
+
+veterans_conscripted = {
+ manpower_recovery_speed = -0.25
+}
+
+coastal_defence = {
+ navy_movement_speed = 0.15
+ naval_range = 0.05
+ naval_damage_taken = -0.05
+ ship_capture_chance = 0.015
+ naval_morale_recovery = 0.05
+ global_ship_recruit_speed = 0.2
+ riverine_terrain_combat_bonus = 0.05
+}
+
+sea_offence = {
+ navy_movement_speed = 0.05
+ naval_range = 0.15
+ naval_damage_done = 0.075
+ naval_morale_recovery = 0.05
+ naval_unit_attrition = 0.2
+ navy_weight_modifier = -0.1
+ ocean_combat_bonus = 0.1
+}
+
+burnt_ground = {
+ global_monthly_food_modifier = -0.15
+ global_food_capacity = -500
+ global_tax_modifier = -0.3
+ global_commerce_modifier = -0.3
+ max_attrition = 1
+ hostile_attrition = 0.4
+ max_war_exhaustion = 10
+ stability_monthly_change = -0.04
+ army_weight_modifier = -0.1
+ global_defensive = 0.2
+ garrison_size = 0.2
+}
+
+fortified_capital = {
+ max_attrition = 5
+ local_hostile_attrition = 2
+ local_defensive = 0.3
+ garrison_growth = 0.3
+ local_monthly_food_modifier = 0.3
+ local_tax_modifier = -0.1
+ local_manpower_modifier = 0.25
+}
+
+grand_assault_mod = {
+ assault_ability = 0.15
+ army_weight_modifier = -0.2
+ enslavement_efficiency = 0.1
+ army_movement_speed = -0.1
+}
+
+grand_siege_mod = {
+ siege_ability = 0.25
+ siege_engineers = 3
+ army_weight_modifier = -0.2
+ enslavement_efficiency = 0.1
+ army_movement_speed = -0.1
+}
+
+

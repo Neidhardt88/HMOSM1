@@ -1,0 +1,35 @@
+﻿namespace = ml_expeditionary_distinctions
+
+## adds any expeditionary distinctions
+ml_expeditionary_distinctions.1 = {
+	type = country_event
+	hidden = yes
+
+	trigger = {
+		exists = scope:actor
+    	scope:actor = {
+            has_legion_trigger = yes
+        	NOT = {
+        		scope:actor.legion = {
+					has_distinction = distinction_expeditionary_01
+        		}
+			}
+        }
+	}
+
+	immediate = {
+		scope:actor = {
+			if = {
+				limit = {
+					scope:actor.legion = {
+						distinction_count >= 20
+					}
+				}
+
+				scope:actor.legion = {
+					add_distinction = distinction_expeditionary_01
+				}
+			}
+		}
+	}
+}

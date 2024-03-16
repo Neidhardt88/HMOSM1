@@ -1,0 +1,104 @@
+﻿go_hunting = { 
+
+	on_other_nation = no 
+	on_own_nation = no 
+	close_ui = yes
+	
+	sound = "event:/SFX/UI/Character/Unique/sfx_ui_character_befriend"
+	
+	potential_trigger = {
+		scope:actor = {
+			OR = {
+				is_monarchy = yes 
+				is_tribal = yes
+				is_republic = yes # maybe if we add republic only events we can make this just monarchy
+			}
+			tyranny <= 99
+		}
+		hidden:scope:target = {
+			is_alive = yes
+			is_mercenary = no
+			employer = {
+				NOR = {
+					tag = PIR
+					tag = REB
+					tag = BAR
+				}
+			}
+			NOT = {
+				this = scope:actor.current_ruler
+			}
+		}
+	}
+	
+	allowed_trigger = {
+		scope:target = {
+			is_adult = yes
+			prisoner = no	
+			is_friend = scope:actor.current_ruler
+			NOT = {
+				is_rival = scope:actor.current_ruler
+			}
+			custom_tooltip = {
+				text = "hunting_friend_skill_tt"
+				martial <= 16
+			}
+			trigger_if = {
+				limit = {
+					has_variable = anti_spam_hunt
+				}
+				custom_tooltip = {
+					text = "anti_spam_hunt_recently"
+			
+					NOT = { has_variable = anti_spam_hunt }
+				}
+			}
+			NOT = {
+				has_variable = hunting_friend
+			}		
+		}
+		scope:actor = {
+			in_diplomatic_range = scope:target.employer
+			can_pay_price = go_hunting
+			has_land = yes
+		}
+		scope:actor.current_ruler = {
+			NOT = { 
+				has_variable = hunter
+			}
+		}
+	}
+	
+	effect = {
+		custom_tooltip = "letter_cost_tt" 
+		if = {
+			limit = {
+				scope:target = {
+					is_ruler = no
+				}
+			}
+
+			scope:target.employer = {
+				trigger_event = {
+					id = hunting.200
+					days = 5
+				}
+			}
+		}
+		else = { 
+			scope:target.employer = {
+				trigger_event = {
+					id = hunting.1 
+					days = 5
+				}
+			}
+		}
+
+		scope:target = {
+			set_variable = {
+				name = anti_spam_hunt
+				days = 5478
+			}
+		}
+	}
+}

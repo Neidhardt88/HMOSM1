@@ -1,0 +1,62 @@
+﻿namespace = invention
+
+invention.1 = {
+	type = country_event
+	hidden = yes
+
+	trigger = {
+		NOT = {
+			has_variable = inv_check
+		}
+		OR = {
+			military_tech = 0
+			mil_tech_check = 0
+			ora_tech_check = 0
+			civ_tech_check = 0
+			rel_tech_check = 0
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					military_tech = 0
+					OR = {
+						military_tech >= 5
+						oratory_tech >= 5
+						civic_tech >= 5
+						religious_tech >= 5
+					}
+				}
+			}
+
+			#debug_log = "add inventions"
+
+			add_innovation = 4
+
+			set_variable = {
+				name = inv_check
+				value = 1
+			}
+		}
+	}
+}
+
+invention.2 = {
+	type = country_event
+	hidden = yes
+
+	trigger = {
+		has_variable = inv_check
+		mil_tech_check > 0
+		ora_tech_check > 0
+		civ_tech_check > 0
+		rel_tech_check > 0
+	}
+
+	immediate = {
+		#debug_log = "remove inventions"
+		remove_variable = inv_check
+	}
+}

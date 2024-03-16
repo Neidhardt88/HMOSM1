@@ -1,0 +1,123 @@
+﻿### DESERT ###
+distinction_desert_master_01 = {
+	icon = "phalera_ox"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.05
+		army_movement_speed = 0.01
+	}
+}
+
+
+distinction_desert_master_02 = {
+	icon = "phalera_ox"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.10
+		army_movement_speed = 0.02
+	}
+}
+
+distinction_desert_01 = {
+	icon = "phalera_amphore"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.01
+	}
+}
+
+distinction_desert_02 = {
+	icon = "phalera_amphore"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.02
+	}
+}
+
+distinction_desert_03 = {
+	icon = "phalera_amphore"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.03
+	}
+}
+
+distinction_desert_04 = {
+	icon = "phalera_amphore"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.04
+	}
+}
+
+distinction_desert_05 = {
+	icon = "phalera_amphore"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.05
+	}
+}
+
+distinction_desert_06 = {
+	icon = "phalera_amphore"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.06
+	}
+}
+
+distinction_desert_07 = {
+	icon = "phalera_amphore"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.07
+	}
+}
+
+distinction_desert_08 = {
+	icon = "phalera_amphore"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.08
+	}
+}
+
+distinction_desert_09 = {
+	icon = "phalera_amphore"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.09
+	}
+}
+
+distinction_desert_10 = {
+	icon = "phalera_amphore"
+	commander = {
+
+	}
+	unit = {
+		desert_combat_bonus = 0.1
+	}
+}

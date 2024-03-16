@@ -1,0 +1,799 @@
+﻿namespace = tribal_duel
+
+tribal_duel.1 = {
+	type = country_event
+	title = "tribal_duel.1.t"
+	desc = "tribal_duel.1.desc"
+	picture = interesting_histories_celt_town
+	left_portrait = scope:actor.current_ruler
+	left_portrait = scope:champion
+	right_portrait = scope:target
+
+ 	trigger = {	
+	}
+
+	immediate = {
+
+ 	}
+
+ 	option = {
+		name = "tribal_duel.1.a"
+		custom_tooltip = tribal_duel.1.a.tt
+		scope:actor.current_ruler = { # Ruler
+			trigger_event = { 
+				id = tribal_duel.2
+				days = 7
+			}
+		}
+	}
+
+	option = {
+		name = "tribal_duel.1.b"
+		scope:actor.current_ruler = { # Champion
+			trigger_event = { 
+				id = tribal_duel.3
+				days = 7
+			}
+		}
+	}
+
+	option = {
+		name = "tribal_duel.1.c"
+	}
+}
+
+tribal_duel.2 = {
+ 	type = character_event
+ 	hidden = yes
+
+ 	trigger = {
+ 		scope:actor.current_ruler = {
+ 			is_alive = yes
+ 		}
+ 		scope:target = {
+ 			is_alive = yes
+ 		}
+ 		scope:champion = {
+ 			is_alive = yes
+ 		}
+ 	}
+
+	immediate = {
+		set_variable = {
+			name = roll
+				value = { integer_range = { min = 1 max = 20 } }
+		}
+		if = { 
+			limit = {
+				has_variable = roll
+				var:roll <= scope:actor.current_ruler.martial # Ruler attacks
+			}
+			
+			scope:actor.current_ruler.employer = { #Success
+				trigger_event = { 
+					id = tribal_duel.4
+					days = 3
+				}
+			}
+		}	
+		else = {
+			scope:actor.current_ruler.employer = { #Failure
+				trigger_event = { 
+					id = tribal_duel.5
+					days = 3
+				}
+			}
+		}
+		remove_variable = roll
+ 	}
+
+}
+
+tribal_duel.3 = {
+ 	type = character_event
+ 	hidden = yes
+
+ 	trigger = {
+ 		scope:actor.current_ruler = {
+ 			is_alive = yes
+ 		}
+ 		scope:target = {
+ 			is_alive = yes
+ 		}
+ 		scope:champion = {
+ 			is_alive = yes
+ 		}
+ 	}
+
+	immediate = {
+		set_variable = {
+			name = roll
+				value = { integer_range = { min = 1 max = 20 } }
+		}
+		if = { 
+			limit = {
+				has_variable = roll
+				var:roll <= scope:champion.martial # Champion attacks
+			}
+			
+			scope:actor.current_ruler.employer = { #Success
+				trigger_event = { 
+					id = tribal_duel.6
+					days = 3
+				}
+			}
+		}	
+		else = {
+			scope:actor.current_ruler.employer = { #Failure
+				trigger_event = { 
+					id = tribal_duel.7
+					days = 3
+				}
+			}
+		}
+		remove_variable = roll
+ 	}
+}
+
+
+
+tribal_duel.4 = { # Ruler win
+	type = country_event
+	title = "tribal_duel.4.t"
+	desc = "tribal_duel.4.desc"
+	picture = gladiators
+	left_portrait = scope:actor.current_ruler
+	right_portrait = scope:target
+
+	immediate = {
+		scope:target = {
+			add_health = { -15 -85 }
+		}
+
+ 	}
+
+	option = { # Let them live
+ 		name = "tribal_duel.4.a"
+
+ 		scope:actor.current_ruler = {
+ 			add_popularity = 15
+ 			random_list = {
+ 				50 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = merciful
+ 						}
+ 					}
+ 					add_trait = merciful
+ 				}
+ 				30 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = just
+ 						}
+ 					}
+ 					add_trait = just
+ 				}
+ 				20 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = forgiving
+ 						}
+ 					}
+ 					add_trait = forgiving
+ 				}
+ 				10 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = ambitious
+ 						}
+ 					}
+ 					add_trait = ambitious
+ 				}
+ 			}
+ 		}
+ 		scope:target = {
+ 			add_loyalty = tribal_duel_mercy
+ 			remove_rival = scope:actor.current_ruler
+ 		}
+ 	}
+
+ 	option = { # Finish them
+ 		name = "tribal_duel.4.b"
+
+ 		scope:actor = {
+			add_political_influence = 15
+ 			add_tyranny = 15
+ 			add_treasury = {
+ 				value = scope:target.wealth
+ 				divide = 5
+ 			}
+ 		}
+ 		scope:actor.current_ruler = {
+ 			random_list = {
+ 				25 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = cruel
+ 						}
+ 					}
+ 					add_trait = cruel
+ 				}
+ 				25 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = harsh
+ 						}
+ 					}
+ 					add_trait = harsh
+ 				}
+ 				25 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = vengeful
+ 						}
+ 					}
+ 					add_trait = vengeful
+ 				}
+ 				25 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = ambitious
+ 						}
+ 					}
+ 					add_trait = ambitious
+ 				}
+ 			}
+ 		}
+ 		scope:target = {
+ 			death = {
+ 				death_reason = death_execution
+ 				killer = scope:actor.current_ruler
+ 			}
+ 		}
+ 	}
+}
+
+
+
+tribal_duel.5 = { # Ruler miss
+	type = country_event
+	title = "tribal_duel.5.t"
+	desc = "tribal_duel.5.desc"
+	picture = gladiators
+	left_portrait = scope:actor.current_ruler
+	right_portrait = scope:target
+
+	immediate = {
+
+ 	}
+
+ 	option = { # Continue
+ 		name = "tribal_duel.5.a"
+ 		scope:target = { #
+			trigger_event = { 
+				id = tribal_duel.10
+				days = 3
+			}
+		}
+ 	}
+
+ 	option = { # Surrender
+ 		name = "tribal_duel.5.b"
+ 		scope:actor = {
+ 			add_tyranny = 10
+ 		}
+ 	}
+}
+
+
+
+tribal_duel.6 = { # Champion win
+	type = country_event
+	title = "tribal_duel.6.t"
+	desc = "tribal_duel.6.desc"
+	picture = gladiators
+	left_portrait = scope:actor.current_ruler
+	left_portrait = scope:champion
+	right_portrait = scope:target
+
+	immediate = {
+		scope:target = {
+			add_health = { -15 -85 }
+		}
+
+ 	}
+
+ 	option = { # Let them live
+ 		name = "tribal_duel.6.a"
+ 		scope:champion = {
+ 			add_popularity = 15
+ 			random_list = {
+ 				50 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = merciful
+ 						}
+ 					}
+ 					add_trait = merciful
+ 				}
+ 				30 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = just
+ 						}
+ 					}
+ 					add_trait = just
+ 				}
+ 				20 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = forgiving
+ 						}
+ 					}
+ 					add_trait = forgiving
+ 				}
+ 				10 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = ambitious
+ 						}
+ 					}
+ 					add_trait = ambitious
+ 				}
+ 			}
+ 		}
+ 		scope:target = {
+ 			add_loyalty = tribal_duel_mercy
+ 			remove_rival = scope:actor.current_ruler
+ 		}
+ 	}
+
+ 	option = { # Finish them
+ 		name = "tribal_duel.6.b"
+ 		scope:actor = {
+			add_political_influence = 15
+ 			add_tyranny = 15
+ 			add_treasury = {
+ 				value = scope:target.wealth
+ 				divide = 5
+ 			}
+ 		}
+ 		scope:champion = {
+ 			random_list = {
+ 				25 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = cruel
+ 						}
+ 					}
+ 					add_trait = cruel
+ 				}
+ 				25 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = harsh
+ 						}
+ 					}
+ 					add_trait = harsh
+ 				}
+ 				25 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = vengeful
+ 						}
+ 					}
+ 					add_trait = vengeful
+ 				}
+ 				25 = {
+ 					trigger = {
+ 						NOT = {
+ 							has_trait = ambitious
+ 						}
+ 					}
+ 					add_trait = ambitious
+ 				}
+ 			}
+ 		}
+ 		scope:target = {
+ 			death = {
+ 				death_reason = death_execution
+ 				killer = scope:champion
+ 			}
+ 		}
+ 	}
+}
+
+
+
+tribal_duel.7 = { # Champion miss
+	type = country_event
+	title = "tribal_duel.7.t"
+	desc = "tribal_duel.7.desc"
+	picture = gladiators
+	left_portrait = scope:actor.current_ruler
+	left_portrait = scope:champion
+	right_portrait = scope:target
+
+	immediate = {
+
+ 	}
+
+ 	option = { # Continue
+ 		name = "tribal_duel.7.a"
+ 		scope:target = { #
+			trigger_event = { 
+				id = tribal_duel.13
+				days = 3
+			}
+		}
+ 	}
+
+ 	option = { # Surrender
+ 		name = "tribal_duel.7.b"
+ 		scope:actor = {
+ 			add_tyranny = 10
+ 		}
+ 	}
+}
+
+
+tribal_duel.10 = {
+ 	type = character_event
+ 	hidden = yes
+
+	immediate = {
+		set_variable = {
+			name = roll
+				value = { integer_range = { min = 1 max = 20 } }
+		}
+		if = { 
+			limit = {
+				has_variable = roll
+				var:roll <= scope:target.martial # Rival attacks
+			}
+			
+			scope:actor.current_ruler.employer = { #Success
+				trigger_event = { 
+					id = tribal_duel.11
+					days = 3
+				}
+			}
+		}	
+		else = {
+			scope:actor.current_ruler.employer = { #Failure
+				trigger_event = { 
+					id = tribal_duel.12
+					days = 3
+				}
+			}
+		}
+		remove_variable = roll
+ 	}
+}
+
+tribal_duel.11 = { # Rival win vs ruler
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:actor.current_ruler = {
+			add_health = { -15 -85 }
+		}
+
+		random_list = {
+			80 = {
+				scope:actor.current_ruler.employer = { 
+					trigger_event = { 
+						id = tribal_duel.16
+						days = 3
+					}
+				}
+			}
+			20 = {
+				scope:target = {
+					add_popularity = 50
+					add_trait = cruel
+				}
+
+				scope:actor.current_ruler = {
+					death = {
+ 						death_reason = death_execution
+ 						killer = scope:target
+ 					}
+				}
+
+				scope:actor.current_ruler.employer = { 
+					trigger_event = { 
+						id = tribal_duel.18
+						days = 3
+					}
+				}
+			}
+		}
+ 	}
+}
+
+
+tribal_duel.12 = { # Rival misses vs ruler
+	type = country_event
+	title = "tribal_duel.12.t"
+	desc = "tribal_duel.12.desc"
+	picture = gladiators
+	left_portrait = scope:actor.current_ruler
+	#left_portrait = scope:champion
+	right_portrait = scope:target
+
+	immediate = {
+
+ 	}
+
+ 	option = { # Continue
+ 		name = "tribal_duel.12.a"
+ 		scope:actor.current_ruler = { #
+			trigger_event = { 
+				id = tribal_duel.2
+				days = 3
+			}
+		}
+ 	}
+
+ 	option = { # Surrender
+ 		name = "tribal_duel.12.b"
+ 		scope:actor = {
+ 			add_tyranny = 10
+ 		}
+ 	}
+}
+
+
+
+tribal_duel.13 = {
+ 	type = character_event
+ 	hidden = yes
+
+	immediate = {
+		set_variable = {
+			name = roll
+				value = { integer_range = { min = 1 max = 20 } }
+		}
+		if = { 
+			limit = {
+				has_variable = roll
+				var:roll <= scope:target.martial # Rival attacks
+			}
+			
+			scope:actor.current_ruler.employer = { #Success
+				trigger_event = { 
+					id = tribal_duel.14
+					days = 3
+				}
+			}
+		}	
+		else = {
+			scope:actor.current_ruler.employer = { #Failure
+				trigger_event = { 
+					id = tribal_duel.15
+					days = 3
+				}
+			}
+		}
+		remove_variable = roll
+ 	}
+}
+
+
+tribal_duel.14 = { # Rival wins vs champion
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		scope:champion = {
+			add_health = { -15 -85 }
+		}
+
+		random_list = {
+			80 = {
+				scope:actor.current_ruler.employer = { 
+					trigger_event = { 
+						id = tribal_duel.17
+					}
+				}
+			}
+			20 = {
+				scope:target = {
+					add_popularity = 50
+					add_trait = cruel
+				}
+
+				scope:champion = {
+					death = {
+ 						death_reason = death_execution
+ 						killer = scope:target
+ 					}
+				}
+
+				scope:actor.current_ruler.employer = { 
+					trigger_event = { 
+						id = tribal_duel.19
+					}
+				}
+			}
+		}
+ 	}
+}
+
+tribal_duel.15 = { # Rival misses vs chapmion
+	type = country_event
+	title = "tribal_duel.15.t"
+	desc = "tribal_duel.15.desc"
+	picture = gladiators
+	left_portrait = scope:actor.current_ruler
+	left_portrait = scope:champion
+	right_portrait = scope:target
+
+	immediate = {
+
+ 	}
+
+ 	option = { # Continue
+ 		name = "tribal_duel.15.a"
+ 		scope:champion = { #
+			trigger_event = { 
+				id = tribal_duel.3
+				days = 3
+			}
+		}
+ 	}
+
+ 	option = { # Surrender
+ 		name = "tribal_duel.15.b"
+ 		scope:actor = {
+ 			add_tyranny = 10
+ 		}
+ 	}
+}
+
+tribal_duel.16 = { # ruler loses yet lives
+	type = country_event
+	title = "tribal_duel.16.t"
+	desc = "tribal_duel.16.desc"
+	picture = gladiators
+	left_portrait = scope:actor.current_ruler
+	right_portrait = scope:target
+
+	option = {
+		name = "tribal_duel.16.a"
+
+		scope:actor = {
+			add_tyranny = 10
+		}
+		scope:actor.current_ruler = {
+			add_popularity = -25
+			random_list = {
+				25 = {
+					trigger = {
+						NOT = {
+							has_trait = submissive
+						}
+					}
+
+					add_trait = submissive
+				}
+				25 = {
+					trigger = {
+						NOT = {
+							has_trait = weak_willed
+						}
+					}
+
+					add_trait = weak_willed
+				}
+				25 = {
+					trigger = {
+						NOT = {
+							has_trait = coward
+						}
+					}
+
+					add_trait = coward
+				}
+				25 = {
+					trigger = {
+						NOT = {
+							has_trait = incapable
+						}
+					}
+					
+					add_trait = incapable
+				}
+			}
+		}
+	}
+}
+
+tribal_duel.17 = { # champion loses yet lives
+	type = country_event
+	title = "tribal_duel.17.t"
+	desc = "tribal_duel.17.desc"
+	picture = gladiators
+	left_portrait = scope:actor.current_ruler
+	left_portrait = scope:champion
+	right_portrait = scope:target
+
+	option = {
+		name = "tribal_duel.17.a"
+
+		scope:actor = {
+			add_tyranny = 10
+		}
+		scope:champion = {
+			add_popularity = -25
+			random_list = {
+				25 = {
+					trigger = {
+						NOT = {
+							has_trait = submissive
+						}
+					}
+
+					add_trait = submissive
+				}
+				25 = {
+					trigger = {
+						NOT = {
+							has_trait = weak_willed
+						}
+					}
+
+					add_trait = weak_willed
+				}
+				25 = {
+					trigger = {
+						NOT = {
+							has_trait = coward
+						}
+					}
+
+					add_trait = coward
+				}
+				25 = {
+					trigger = {
+						NOT = {
+							has_trait = incapable
+						}
+					}
+					
+					add_trait = incapable
+				}
+			}
+		}
+	}
+}
+
+tribal_duel.18 = { # ruler loses and has been killed
+	type = country_event
+	title = "tribal_duel.18.t"
+	desc = "tribal_duel.18.desc"
+	picture = gladiators
+	left_portrait = scope:actor.current_ruler
+	right_portrait = scope:target
+
+	option = {
+		name = "tribal_duel.18.a"
+	}
+}
+
+tribal_duel.19 = { # champion loses and has been killed
+	type = country_event
+	title = "tribal_duel.19.t"
+	desc = "tribal_duel.19.desc"
+	picture = gladiators
+	left_portrait = scope:actor.current_ruler
+	left_portrait = scope:champion
+	right_portrait = scope:target
+
+	option = {
+		name = "tribal_duel.19.a"
+	}
+}

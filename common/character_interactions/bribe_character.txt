@@ -1,0 +1,426 @@
+﻿bribe_character = {
+
+	on_other_nation = no
+	on_own_nation = yes
+	
+	sound = "event:/SFX/UI/Character/Unique/sfx_ui_character_bribe"
+	
+	potential_trigger = {
+		hidden:scope:target = {
+			employer = scope:actor
+			NOT = { employer = { tag = REB } }
+			NOT = { employer = { tag = BAR } }
+			is_alive = yes
+			is_ruler = no
+			scope:actor.current_ruler = {
+				NOR = {
+					has_trait = orator
+					has_trait = silver_tongued
+				}
+			}
+		}
+	}
+	
+	
+	allowed_trigger = {
+		scope:target = {
+			prisoner = no
+			is_adult = yes
+			trigger_if = {
+				limit = {
+					has_variable = ca_character_bribed
+				}
+				custom_tooltip = {
+					text = "BRIBED_RECENTLY"
+			
+					NOT = { has_variable = ca_character_bribed }
+				}
+			}
+			NOR = {
+				has_trait = righteous
+				has_trait = honest
+			}
+		}
+		custom_tooltip = {
+			text = BRIBE_RULERWEALTH_TT
+			scope:actor.current_ruler = {
+				wealth >= 100
+			}
+		}
+		trigger_if = {
+			limit = {
+				scope:actor = {
+					is_ai = no
+				}
+			}
+			scope:actor = {
+				can_pay_price = bribe_pi
+			}
+		}
+	}
+	
+	
+	effect = {
+		if = {
+			limit = {
+				scope:actor = {
+					is_ai = no
+				}
+			}
+			scope:actor = {
+				pay_price = bribe_pi
+			}
+		}
+		hidden_effect = {
+			scope:actor.current_ruler = {
+				if = {
+					limit = { scope:actor = { is_ai = no } }
+					add_corruption = 1
+				}
+			}
+			scope:actor.current_ruler = {
+				add_gold = -100
+			}
+		}
+		custom_tooltip = bribe_actor_tt
+		hidden_effect = {
+			scope:target = { # Update TT if changing this!
+				add_gold = 100
+				add_loyalty = ci_bribe
+				add_corruption = 5
+				hidden_effect = {
+					set_variable = {
+						name = ca_character_bribed
+						days = 1440
+					}
+				}
+			}
+		}
+		custom_tooltip = bribe_target_tt
+	}
+	
+	ai_will_do = {
+		modifier = {
+			add = 100
+			trigger = {
+				loyalty <= 45
+				OR = {
+					has_any_office = yes
+					is_governor = yes
+					power_base > 5
+				}
+				
+			}
+		}
+		modifier = {
+			add = 100
+			trigger = {
+				loyalty <= 45
+				OR = {
+					is_general = yes
+					is_admiral = yes
+				}
+			}
+		}
+	}
+	
+}	
+
+orator_bribe_character = {
+
+	on_other_nation = no
+	on_own_nation = yes
+	
+	sound = "event:/SFX/UI/Character/Unique/sfx_ui_character_bribe"
+	
+	potential_trigger = {
+		hidden:scope:target = {
+			NOT = { employer = { tag = REB } }
+			NOT = { employer = { tag = BAR } }
+			is_alive = yes
+			is_ruler = no
+			scope:actor.current_ruler = {
+				OR = {
+					has_trait = orator
+					has_trait = silver_tongued
+				}
+			}
+		}
+	}
+	
+	
+	allowed_trigger = { 
+		scope:target = {
+			prisoner = no
+			is_adult = yes
+			trigger_if = {
+				limit = {
+					has_variable = ca_character_bribed
+				}
+				custom_tooltip = {
+					text = "BRIBED_RECENTLY"
+			
+					NOT = { has_variable = ca_character_bribed }
+				}
+			}
+			NOR = {
+				has_trait = suspicious
+				has_trait = sceptical
+				has_trait = deceitful
+			}
+		}
+		trigger_if = {
+			limit = {
+				scope:actor = {
+					is_ai = no
+				}
+			}
+			scope:actor = {
+				can_pay_price = bribe_pi
+			}
+		}
+	}
+	
+
+	
+	effect = {
+		custom_tooltip = "orator_bribe_reason"
+		if = {
+			limit = {
+				scope:actor = {
+					is_ai = no
+				}
+			}
+			scope:actor = {
+				pay_price = bribe_pi
+			}
+		}
+		scope:target = {
+			add_loyalty = ci_bribe
+			hidden_effect = {
+				set_variable = {
+					name = ca_character_bribed
+					days = 730
+				}
+			}
+		}
+	}
+	
+	ai_will_do = {
+		modifier = {
+			add = 200
+			trigger = {
+				loyalty <= 45
+				OR = {
+					has_any_office = yes
+					is_governor = yes
+					power_base > 5
+				}
+				
+			}
+		}
+		modifier = {
+			add = 100
+			trigger = {
+				loyalty <= 45
+				OR = {
+					is_general = yes
+					is_admiral = yes
+				}
+			}
+		}
+	}
+	
+}	
+
+temptress_bribe_character = {
+
+	on_other_nation = no
+	on_own_nation = yes
+	
+	sound = "event:/SFX/UI/Character/Unique/sfx_ui_character_bribe"
+	
+	potential_trigger = {
+		hidden:scope:target = {
+			NOT = { employer = { tag = REB } }
+			NOT = { employer = { tag = BAR } }
+			is_alive = yes
+			is_ruler = no
+			is_male = yes
+			NOT = {
+				is_spouse_of = scope:actor.current_ruler
+			}
+			scope:actor.current_ruler = {
+				is_female = yes
+				age < 45
+				OR = {
+					has_trait = fair
+					has_trait = lustful
+					has_trait = loving
+					has_trait = assertive
+					has_trait = crafty
+					has_trait = reckless
+					has_trait = rash
+					has_trait = vengeful
+					has_trait = brave
+					has_trait = daring
+					has_trait = confident
+					has_trait = aggressive
+					has_trait = coastal_raider
+					has_trait = disciplined
+					has_trait = squadron_leader
+					has_trait = improviser
+					has_trait = oarmaster
+					has_trait = original_thinker
+					has_trait = princeps
+					has_trait = seadog
+					has_trait = steadfast
+					has_trait = tough
+					has_trait = tactician
+					has_culture_group = aryan
+				}
+				NOR = {
+					has_trait = ugly
+					has_trait = chaste
+					has_trait = dementia
+					has_trait = hunchback
+					has_trait = gangrene
+					has_trait = leper
+					has_trait = mentagra
+					has_trait = pox
+					has_trait = plague
+					has_trait = paralysis
+					has_trait = invalid
+					has_trait = dysentery
+					has_trait = diphtheria
+					has_trait = cancer
+					has_trait = brain_damaged
+					has_trait = hemorrhagic_fever
+					has_trait = pneumonia
+				}	
+			}
+		}
+	}
+	
+	allowed_trigger = { 
+		scope:target = {
+			prisoner = no
+			is_adult = yes
+			trigger_if = {
+				limit = {
+					has_variable = ca_character_titillated
+				}
+				custom_tooltip = {
+					text = "titillated_recently"
+					NOT = { has_variable = ca_character_titillated }
+				}
+			}
+			NOT = { has_variable = ca_character_titillated }
+			NOR = {
+				has_trait = suspicious
+				has_trait = sceptical
+				has_trait = castrated
+				has_trait = chaste
+				has_trait = cold
+				has_trait = gangrene
+				has_trait = leper
+				has_trait = mentagra
+				has_trait = pox
+				has_trait = plague
+				has_trait = paralysis
+				has_trait = invalid
+				has_trait = dysentery
+				has_trait = diphtheria
+				has_trait = cancer
+				has_trait = brain_damaged
+				has_trait = hemorrhagic_fever
+				has_trait = pneumonia
+			}
+		}
+		trigger_if = {
+			limit = {
+				scope:actor = {
+					is_ai = no
+				}
+			}
+			scope:actor = {
+				can_pay_price = bribe_pi
+			}
+		}
+	}
+	
+	
+	effect = {
+		scope:target = {
+			hidden_effect = {
+				set_variable = {
+					name = ca_character_titillated
+					days = 730
+				}
+			}
+		}
+		scope:target.employer= {
+			hidden_effect = {
+				set_variable = {
+					name = roll
+						value = { integer_range = { min = 1 max = 20 } }
+				}
+				if = { 
+					limit = {
+						has_variable = roll
+						var:roll <= scope:actor.current_ruler.charisma
+					}
+					scope:target.employer = {
+						trigger_event = { 
+							id = temptress.1
+							days = 60
+						}
+					}
+					scope:actor.current_ruler = {
+						hidden_effect = {
+							set_variable = {
+								name = alluring
+								days = 730
+				}
+			}
+		}
+				}	
+				else = {
+					scope:target.employer = {
+						trigger_event = { 
+							id = temptress.2
+							days = 60
+						}
+					}
+				}
+				remove_variable = roll
+			}
+		}
+	}
+	
+	ai_will_do = {
+		modifier = {
+			add = 200
+			trigger = {
+				loyalty <= 45
+				OR = {
+					has_any_office = yes
+					is_governor = yes
+					power_base > 5
+				}
+				
+			}
+		}
+		modifier = {
+			add = 100
+			trigger = {
+				loyalty <= 45
+				OR = {
+					is_general = yes
+					is_admiral = yes
+				}
+			}
+		}
+	}
+	
+}

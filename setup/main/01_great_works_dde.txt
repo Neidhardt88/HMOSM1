@@ -1,0 +1,87 @@
+#these are vanilla wonders modded
+
+provinces={
+	266={ # Rhodes
+		great_work=2
+	}
+	278={ #Pergamon
+		great_work=4
+	}
+	428={ # Aigeai
+		great_work=7
+	}
+}
+
+great_work_manager={
+	great_works_database={
+		2={
+			dlc = "Hellenistic World Flavor Pack"
+			ancient_wonder = yes
+			key="rhodes_acropolis"
+			great_work_state=great_work_state_completed
+			finished_date=450.10.1
+			great_work_category="building"
+
+			great_work_name={
+				name="wonder_rhodes_acropolis"
+			}
+			great_work_components={
+				{
+					great_work_module="wonder_rhodes_acropolis"
+				}
+			}
+			great_work_effect_selections={
+				{
+					great_work_effect="gw_effect_acropolis_rhodes"
+					great_work_effect_tier = "gw_effect_tier_4"
+				}
+			}
+		}
+		4={
+			dlc = "Hellenistic World Flavor Pack"
+			ancient_wonder = yes
+			key="pergamon_acropolis"
+			great_work_state=great_work_state_completed
+			finished_date=450.10.1
+			great_work_category="building"
+
+			great_work_name={
+				name="wonder_pergamon_acropolis"
+			}
+			great_work_components={
+				{
+					great_work_module="wonder_pergamon_acropolis"
+				}
+			}
+			great_work_effect_selections={
+				{
+					great_work_effect="gw_effect_pergamon_acropolis"
+					great_work_effect_tier = "gw_effect_tier_4"
+				}
+			}
+		}
+		7={
+			dlc = "Hellenistic World Flavor Pack"
+			ancient_wonder = yes
+			key="argead_palace"
+			great_work_state=great_work_state_completed
+			finished_date=450.10.1
+			great_work_category="building"
+			
+			great_work_name={
+				name="wonder_argead_palace"
+			}
+			great_work_components={
+				{
+					great_work_module="wonder_argead_palace"
+				}
+			}
+			great_work_effect_selections={
+				{
+					great_work_effect="gw_effect_argead_palace"
+					great_work_effect_tier = "gw_effect_tier_4"
+				}
+			}
+		}
+	}
+}
