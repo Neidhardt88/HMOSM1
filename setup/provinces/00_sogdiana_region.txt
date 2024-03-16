@@ -101,7 +101,7 @@
 		amount=2
 	}
 	freemen={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=1
 	}
@@ -267,7 +267,7 @@
 		amount=5
 	}
 	citizen={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=3
 	}
@@ -316,14 +316,14 @@
 	}
 	citizen={
 		amount=5
-		culture="macedonian"
+		culture="greco_bactrian"
 	}
 	freemen={
 		amount=8
 	}
 	freemen={
 		amount=2
-		culture="macedonian"
+		culture="greco_bactrian"
 	}
 	freemen={
 		culture="pasargadi"
@@ -771,7 +771,7 @@
 		amount=1
 	}
 	freemen={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=1
 	}
@@ -800,7 +800,7 @@
 		amount=4
 	}
 	citizen={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=1
 	}
@@ -835,12 +835,12 @@
 		amount=1
 	}
 	citizen={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=1
 	}
 	freemen={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=2
 	}
@@ -853,7 +853,7 @@
 		amount=1
 	}
 	slaves={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=1
 	}
@@ -877,12 +877,12 @@
 		amount=1
 	}
 	citizen={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=2
 	}
 	freemen={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=1
 	}
@@ -892,7 +892,7 @@
 		amount=1
 	}
 	slaves={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=1
 	}
@@ -1086,7 +1086,7 @@
 		amount=1
 	}
 	citizen={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=1
 	}
@@ -1095,7 +1095,7 @@
 		amount=1
 	}
 	freemen={
-		culture="macedonian"
+		culture="greco_bactrian"
 		religion="roman_pantheon"
 		amount=1
 	}

@@ -940,5 +940,12 @@ S17 = "setup/countries/anatolia/S17.txt" #Kamisa
 S18 = "setup/countries/anatolia/S18.txt" #Selinous
 #Submod Syria
 S19 = "setup/countries/syria/S19.txt" #Doliche
+#Submod Mesopotamia
+S20 = "setup/countries/caucasiamesopotamia/S20.txt" #Hatra
+#Submod Assyria
+S21 = "setup/countries/assyria/S21.txt" #Chlomaron
+#Submod Africa
+S22 = "setup/countries/africa/S22.txt" #Parva
+S23 = "setup/countries/africa/S23.txt" #Berenike Troglodytica
 #Submod Formable
 TRK = "setup/countries/anatolia/TRK.txt" #TroanKingdom

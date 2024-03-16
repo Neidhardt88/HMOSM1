@@ -52,3 +52,11 @@ levy_southern_indian = {
 	archers = 0.35
 	warelephant = 0.3
 }
+
+levy_indo_greek = {
+	default = no
+
+	light_infantry = 0.35
+	archers = 0.45
+	warelephant = 0.2
+}

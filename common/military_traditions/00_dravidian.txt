@@ -12,12 +12,12 @@
 		}
 		trigger_else_if = {
 			limit = {
-				tag = BAC
+				country_culture_group = bactrian
 			}
 			custom_tooltip = {
 				text = "began_with_tradition_group"
 			}
-			tag = BAC
+			country_culture_group = bactrian
 		}
 		trigger_else = {
 			OR = {

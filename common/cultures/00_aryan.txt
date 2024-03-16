@@ -97,6 +97,7 @@
 		sindhi = { levy_template = levy_sindhi }
 		dardic = { levy_template = levy_jungle_indian }
 		purus = { levy_template = levy_gandhari }
+		indo_greek = { levy_template = levy_indo_greek }
 	}
 	
 	barbarian_names = { 

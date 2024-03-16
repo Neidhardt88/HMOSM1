@@ -3028,9 +3028,6 @@ provinces = { #Any entry must contain a comment with city name.
 	818 = {
 		fortress_building = 1
 	}
-	853 = {
-		fortress_building = 1
-	}
 	943 = { barracks_building = 1 }
 	1968={
 		modifier = { modifier = alexandria always = yes }
@@ -4193,9 +4190,6 @@ provinces = { #Any entry must contain a comment with city name.
 	569 = { #Diospolis Magna
 		library_building = 1
 	}
-	584 = {
-		fortress_building = 1
-	}
 	593 = {
 		fortress_building = 1
 	}
@@ -4244,9 +4238,6 @@ provinces = { #Any entry must contain a comment with city name.
 	779 = { #Arados
 		commerce_building = 1
 	}
-	829 = { # Doura
-		fortress_building = 1
-	}
 	830 = { # Nisibis
 		library_building = 1
 	}
@@ -4259,12 +4250,6 @@ provinces = { #Any entry must contain a comment with city name.
 	862 = { # Nineveh
 		aqueduct_building = 1
 		library_building = 1
-	}
-	871 = { # Mard
-		fortress_building = 1
-	}
-	874 = {
-		fortress_building = 1
 	}
 	880 = { # Artela
 		aqueduct_building = 2
@@ -4374,9 +4359,6 @@ provinces = { #Any entry must contain a comment with city name.
 		barracks_building = 1
 	}
 	1669 = { # Chahuk
-		fortress_building = 1
-	}
-	1698 = { # Sinara
 		fortress_building = 1
 	}
 	1715 = {
@@ -6783,6 +6765,88 @@ country = {
 			
 			own_control_core = 	{
 				792 794 810 811 812 852 1868 1869
+			}
+		}
+
+		S20 = { #Hatra
+			government = despotic_monarchy
+			primary_culture = qedarite
+			religion = arabian_pantheon
+			
+			technology={
+				military_tech={ level=2 progress=0 }
+				civic_tech={ level=2 progress=0 }
+				oratory_tech={ level=2 progress=0 }
+				religious_tech= { level=2 progress=0  }
+			}
+			
+			capital = 835
+			
+			own_control_core = 	{
+				835 956 891 893 894
+				900 901 903 909 910
+				902 904 954 953 905 906 907 908 829 828 827 826 825
+			}
+		}
+
+		S21 = { #Chlomaron
+			government = despotic_monarchy
+			primary_culture = assyrian
+			religion = mesopotamian_religion
+			
+			technology={
+				military_tech={ level=2 progress=0 }
+				civic_tech={ level=2 progress=0 }
+				oratory_tech={ level=2 progress=0 }
+				religious_tech= { level=2 progress=0  }
+			}
+			
+			capital = 843
+			
+			own_control_core = 	{
+				833 834 843 869 870 842 857 856 845 841 878 877
+				840 867 986
+				6397 
+			}
+		}
+
+		S22 = { #Parva
+			government = theocratic_monarchy
+			primary_culture = libyan
+			religion = egyptian_pantheon
+			
+			technology={
+				military_tech={ level=2 progress=0 }
+				civic_tech={ level=2 progress=0 }
+				oratory_tech={ level=2 progress=0 }
+				religious_tech= { level=2 progress=0  }
+			}
+			
+			capital = 5531
+			
+			own_control_core = 	{
+				5531 5535 5548 5547 5546 5532 5533 5534
+				5530 5529 5528 5527 5523 5524 5525 5526 5514
+			}
+		}
+
+		S23 = { #Berenike Troglodytica
+			government = despotic_monarchy
+			primary_culture = upper_egyptian
+			religion = egyptian_pantheon
+			
+			technology={
+				military_tech={ level=2 progress=0 }
+				civic_tech={ level=2 progress=0 }
+				oratory_tech={ level=2 progress=0 }
+				religious_tech= { level=2 progress=0  }
+			}
+			
+			capital = 583
+			
+			own_control_core = 	{
+				583 584 585 586 587 588 578 589 590
+				580 581 582 579 647 649 650 565
 			}
 		}
 		
@@ -13039,7 +13103,7 @@ country = {
 		
 			own_control_core = 	{ 
 				5600 5599 #gilgit
-				4308 4317 4318 4320 4326 4327 4328 4329 7314 7492 #taxila_region
+				4308 4317 4318 4320 4322 4316 4321 4326 4327 4328 4329 7314 7492 #taxila_region
 				7361 3810 #kasmira
 				6613 #paropamisadae
 				4301 4367 4300 7657 4323 4325 7319 4324 6997 4490 4370 6751 #gandhara
@@ -13051,7 +13115,7 @@ country = {
 			government = oligarchic_republic
 			primary_culture = purus
 			religion = hindu
-			capital = 4340
+			capital = 4346
 			
 			technology={
 				military_tech={ level=2 progress=0 }
@@ -13061,7 +13125,8 @@ country = {
 			}
 		
 			own_control_core = 	{ 
-				4340 4346 4379 4389 4396 4397 4400
+				4340 4346 4379 4389 4315 
+				4400 4397 4396 4399 4380 4395 4388
 			}
 		}
 		
@@ -13780,8 +13845,9 @@ country = {
 			capital = 4355
 		
 			own_control_core =  {
-				4355 4361 4362 4364 4365 4375 4376 7660 4366 4368 4369 
+				4355 4361 4362 4364 4365 4375 4376 4366 4368 4369 
 				4377 4385 4386 4350 4348 4351 4383 4330 4319
+				4384 4331 4398 7399
 			}
 		}
 		
@@ -13819,8 +13885,8 @@ country = {
 			capital = 6821
 		
 			own_control_core =  {
-				6527 6821 6849 6521 6522 6523 6524 6525 6620 
-				6531 6532 6536 6526 6815 6848 6822 6852
+				6821 6815 7660 6527 6849 6521 6522 6523 6524 6525 6620 
+				6531 6532 6536 6526
 			}
 		}
 		
@@ -13929,7 +13995,7 @@ country = {
 		
 		B86 = { #ALEXANDREIA INDOS
 			government = aristocratic_monarchy
-			primary_culture = macedonian
+			primary_culture = indo_greek
 			religion = buddhism
 		
 			technology={
@@ -13942,9 +14008,8 @@ country = {
 			capital = 4371
 		
 			own_control_core =  {
-				4371 4373 4378 4381 4349 4382 4388 4395 4380 
-				4357 4356 4359 4358 4354 6827 4353 4360 4363 4352 4372 4374
-				4384 4398 4331 4321 7399 4399 4315 4316 4322
+				4371 4373 4378 4381 4349 4382 
+				4357 4356 4359 4358 4354 6827 4353 4360 4363 4352 4372 4374 6822 6852 6848
 			}
 		}
 
@@ -15496,7 +15561,7 @@ country = {
 		
 		A89 = { #Alexandria Eschate
 			government = stratocratic_monarchy
-			primary_culture = macedonian
+			primary_culture = greco_bactrian
 			religion = roman_pantheon
 		
 			technology={
@@ -16341,8 +16406,9 @@ country = {
 			capital = 569
 		
 			own_control_core =  {
-                        562 563 567 570 568 569 572 571 573 574 575 576 577 591 592 593 594 595 596 597 598 599 5519 5521
+                        567 570 568 569 572 571 573 574 575 576 577 591 592 593 594 595 596 597 598 599 5519 5521
                         5520 5518 5517 5515 5508 5516 5507 5506 5513 5512 5505 5504 5503 5502 5501 5500 5522 5509 5510 5511
+                        566 564
 				
 			}
 		}
@@ -16382,8 +16448,9 @@ country = {
 			capital = 543
 		
 			own_control_core =  {
-				538 541 540 5547 539 544 542 546 545 547 548 551 549 
-                                552 553 555 554 556 557 558 560 561 559 543 
+				538 541 540 539 544 542 546 545 547 548 551 549 
+                550 552 553 555 554 556 557 558 560 561 559 543
+                562 563
 			}
 		}
 
@@ -16404,8 +16471,7 @@ country = {
 			own_control_core =  {
 				5537 3368 3369 3370 3371 3372 3373 3374 3375 3376 3377 3378 3379 3380
                                 3476 3477 3478 5556 5553 5552 5554 5550 5551 5555 5538 5539
-                                5540 5536 5544 5543 5542 5541 5545 5531 5535 5534 5548 5546 5532 5533 
-                                5530 5529 5528 5527 5523 5525 5524 5526 5514 550
+                                5540 5536 5544 5543 5542 5541 5545 
 			}
 		}
 
@@ -16555,8 +16621,8 @@ country = {
 				8074 8075 8076 8077 8078 #eastern_desert
 				8080 8081 8082 8083 8084 8085 8086 8087 8088 8089 8090 #allaqi
 				8091 8092 8093 8094 8095 8096 8097 8098 #gabgaba
-				8079 8073 8071 8072 583 584 585 590 589 586 587 580 588 578
-				582 579 566 564 565 581 647 649 650 7552 7553
+				8079 8073 8071 8072
+				7552 7553
 			}
 		} 
 		
@@ -17488,7 +17554,8 @@ country = {
 			own_control_core =  {
 				818 847 855 871 872 822 831 876 873 830
 				853 848 820 849 817 819 854 821 844 874 879 832
-				1847 826 825 823 824
+				1847 823 824
+				875 868
 			}
 		}
 		
@@ -17528,9 +17595,8 @@ country = {
 			capital = 858
 		
 			own_control_core =  {
-				858 1856 1857 1858 1853 1855 1866 840 859 860
-				235 6397 8007 8008 8009 8010 1769 7844 7845 1771 1733 1766 
-				833 834 841 842 843 845 856 857 869 870 877 878
+				858 1856 1857 1858 1853 1855 1866 859 860
+				235 8007 8008 8009 8010 1769 7844 7845 1771 1733 1766 
 			}
 		}
 		
@@ -17549,8 +17615,8 @@ country = {
 			capital = 862
 		
 			own_control_core =  {
-				773 861 862 863 864 866 867 868 
-				875 882 986 865 880 881 884 886 887 957 958 984 985 1578 883 955
+				773 861 862 863 864 866 
+				882 865 880 881 884 886 887 957 958 984 985 1578 883 955
 			}
 		}
 		
@@ -17569,8 +17635,7 @@ country = {
 			capital = 754
 		
 			own_control_core =  {
-				754 755 756 775 800 801 802 803 804 806 815 827 828 829 850 847 904 905 906 907 908 953 954
-				902 894 891 956 835 900 901 910 909 903 893 
+				754 755 756 775 800 801 815 850 802 803 847 804 806
 			}
 		}
 
